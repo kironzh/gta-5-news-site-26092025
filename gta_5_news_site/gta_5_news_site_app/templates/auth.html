@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>АВТОРИЗАЦИЯ</title>
+    <link rel="stylesheet" href="auth.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-xl navbar navbar-dark bg-primary">
+   <div class="container-fluid">
+      <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="" width="170">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarWithDropdown">
+        <ul class="navbar-nav">
+           <li class="nav-item">
+              <a class="nav-link" href="#">СМИ И РАЗВЛЕЧЕНИЯ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href="#">ЕДА И НАПИТКИ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href="#">ДЕНЬГИ И УСЛУГИ</a>
+           </li>
+         <li class="nav-item">
+              <a class="nav-link" href="#">ПУТЕШЕСТВИЕ И ТРАНСПОРТ</a>
+           </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">МОДА И ЗДОРОВЬЕ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href={% url 'auth' %} aria-disabled="true">ВХОД / РЕГИСТРАЦИЯ</a>
+           </li>
+           </ul>
+  <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+        <button class="btn btn-outline-success" type="submit">Поиск</button>
+      </form>
+           </nav>
+  <section class="vh-100" style="background-color: white;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Регистрация на Eyefind</p>
+
+                <form class="mx-1 mx-md-4">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" />
+                      <label class="form-label" for="form3Example1c">Имя пользователя</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                      <input type="email" id="form3Example3c" class="form-control" />
+                      <label class="form-label" for="form3Example3c">Электронная почта</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4c" class="form-control" />
+                      <label class="form-label" for="form3Example4c">Пароль</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4cd" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Повторите пароль</label>
+                    </div>
+                  </div>
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                    <label class="form-check-label" for="form2Example3">
+                     Я согласен со всеми положениями <a href="#!">Условий предоставления услуг</a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Зарегистрироваться</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://avatars.mds.yandex.net/i?id=83e8339643870e8bc7ed4a71d95e4ad2_l-5889061-images-thumbs&n=13"
+                  class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <p>© 2025 Ronzhstar Games. Все права защищены.</p>
+</footer>
+</html>

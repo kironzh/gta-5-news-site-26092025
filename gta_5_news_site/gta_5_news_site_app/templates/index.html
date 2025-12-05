@@ -11,7 +11,6 @@
     <title>GTA 5 NEWS SITE</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-xl navbar navbar-dark bg-primary">
    <div class="container-fluid">
       <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="" width="170">
@@ -34,6 +33,9 @@
            </li>
               <li class="nav-item">
               <a class="nav-link" href="#">МОДА И ЗДОРОВЬЕ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href={% url 'auth' %} aria-disabled="true">ВХОД / РЕГИСТРАЦИЯ</a>
            </li>
            </ul>
   <form class="d-flex" role="search">
@@ -87,6 +89,9 @@
     <p>© 2025 Ronzhstar Games. Все права защищены.</p>
 </footer>
               
+   
+   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+   <script src={% static='js/nav.js' %}></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
