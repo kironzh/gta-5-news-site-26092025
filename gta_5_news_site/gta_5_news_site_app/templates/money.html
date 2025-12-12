@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-xl navbar navbar-dark bg-primary">
+   <div class="container-fluid">
+      <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="" width="170">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarWithDropdown">
+        <ul class="navbar-nav">
+           <li class="nav-item">
+              <a class="nav-link" href="#">СМИ И РАЗВЛЕЧЕНИЯ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href="#">ЕДА И НАПИТКИ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href={% url 'money' %}>ДЕНЬГИ И УСЛУГИ</a>
+           </li>
+         <li class="nav-item">
+              <a class="nav-link" href="#">ПУТЕШЕСТВИЕ И ТРАНСПОРТ</a>
+           </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">МОДА И ЗДОРОВЬЕ</a>
+           </li>
+           <li class="nav-item">
+              <a class="nav-link" href={% url 'auth' %} aria-disabled="true">ВХОД / РЕГИСТРАЦИЯ</a>
+           </li>
+           </ul>
+  <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+        <button class="btn btn-outline-success" type="submit">Поиск</button>
+      </form>
+           </nav>
+<div>РЕЗУЛЬТАТЫ: ДЕНЬГИ И УСЛУГИ</div>
+<footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <p>© 2025 Ronzhstar Games. Все права защищены.</p>
+</footer>
+</body>
+</html>
