@@ -35,7 +35,11 @@
               <a class="nav-link" href="#">МОДА И ЗДОРОВЬЕ</a>
            </li>
            <li class="nav-item">
+           {% if first_name %}
+              <a class="nav-link" href="">{{ first_name }}</a>
+           {% else %}
               <a class="nav-link" href={% url 'auth' %} aria-disabled="true">ВХОД / РЕГИСТРАЦИЯ</a>
+           {% endif %}
            </li>
            </ul>
   <form class="d-flex" role="search">
