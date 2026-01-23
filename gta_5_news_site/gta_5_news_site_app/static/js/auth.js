@@ -20,6 +20,12 @@ $('#auth-button').click(
                 'email' : email,
                 'password' : password,
                 'csrfmiddlewaretoken': csrf
+            },
+            success: function(data) {
+                window.location.href = '/';
+            },
+            error: function(data) {
+                alert('Вы не зарегистрированы')
             }
         });
     }

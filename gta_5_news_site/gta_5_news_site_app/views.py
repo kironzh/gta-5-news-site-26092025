@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout, authenticate
 
 def index(request):
     try:
@@ -12,9 +12,17 @@ def index(request):
 
 def auth(request):
     if request.method == 'POST':
+        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email, password)
+
+        user = authenticate(request, username=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'status' : 'success'})
+        else:
+            return JsonResponse({ 'status' : 'error'})
     else:
         return render(request, 'auth.html')
 
@@ -24,11 +32,11 @@ def money(request):
 
 def reg(request):
     if request.method == 'POST':
-        # username = request.POST.get('username')
+        username = request.POST.get('username')
         email = request.POST.get('email')
-        # first_name = request.POST.get('first_name')
+        first_name = request.POST.get('first_name')
         password = request.POST.get('password')
-        # print(first_name)
+        print(first_name)
         username = email
         user = User.objects.create_user(username, email, password)
         user.save()
@@ -36,5 +44,9 @@ def reg(request):
         return JsonResponse({'status': 'success'})
     else:
       return render(request, 'reg.html')
+    
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 
