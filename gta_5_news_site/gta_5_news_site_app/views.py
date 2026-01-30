@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import login, logout, authenticate
+from .models import News
 
 def index(request):
     try:
@@ -48,5 +49,16 @@ def reg(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+def news_template(request, id):
+    news = News.objects.get(id = id) 
+    context = { 
+        'news_title' : news.news_title,
+        'image' : news.image,
+                'news_text' : news.news_text,
+                'pub_date' : news.pub_date,
+                'news_source' : news.news_source
+    }
+    return render(request, 'news_template.html', context)
 
 
