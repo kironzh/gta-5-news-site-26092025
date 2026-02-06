@@ -19,4 +19,4 @@ class News(models.Model):
     news_source = models.CharField(max_length = 20, default='Eyefind') #источник новости
 
     def __str__(self):
-        return self.news_title
+        return f'{self.id}. {self.news_title}'

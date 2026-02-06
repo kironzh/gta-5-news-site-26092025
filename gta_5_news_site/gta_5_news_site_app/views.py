@@ -55,9 +55,9 @@ def news_template(request, id):
     context = { 
         'news_title' : news.news_title,
         'image' : news.image,
-                'news_text' : news.news_text,
-                'pub_date' : news.pub_date,
-                'news_source' : news.news_source
+        'news_text' : news.news_text,
+        'pub_date' : news.pub_date,
+        'news_source' : news.news_source
     }
     return render(request, 'news_template.html', context)
 
