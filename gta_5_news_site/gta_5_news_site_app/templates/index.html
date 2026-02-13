@@ -11,7 +11,7 @@
     <title>GTA 5 NEWS SITE</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-xl navbar navbar-dark bg-primary">
+ <nav class="navbar navbar-expand-xl navbar navbar-dark bg-primary">
    <div class="container-fluid">
       <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="" width="170">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,10 +28,10 @@
            <li class="nav-item">
               <a class="nav-link" href={% url 'money' %}>ДЕНЬГИ И УСЛУГИ</a>
            </li>
-         <li class="nav-item">
+           <li class="nav-item">
               <a class="nav-link" href="#">ПУТЕШЕСТВИЕ И ТРАНСПОРТ</a>
            </li>
-              <li class="nav-item">
+           <li class="nav-item">
               <a class="nav-link" href="#">МОДА И ЗДОРОВЬЕ</a>
            </li>
            {% if first_name %}
@@ -44,13 +44,16 @@
               <a class="nav-link" href={% url 'auth' %} aria-disabled="true">ВХОД / РЕГИСТРАЦИЯ</a>
            {% endif %}
            </li>
-           </ul>
+        </ul>
+       </div>
+      </div>
   <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
         <button class="btn btn-outline-success" type="submit">Поиск</button>
-      </form>
-           </nav>
-           <div class="card mb-3" style="max-width: 300px;">
+  </form>
+ </nav>
+<div class="container">
+ <div class="card mb-3" style="max-width: 300px; margin-bottom: 2rem; margin-top: 2rem">
   <div class="row g-0">
     <div class="col-md-4">
     </div>
@@ -63,8 +66,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="card right_header" style="position: absolute; right: 750px; top: 150px">
+ </div>
+<div class="card right_header" style="position: absolute; right: 500px; top: 150px;  margin-bottom: 2rem; margin-top: 2rem">
   <div class="card-header">
     От спонсора
   </div>
@@ -75,8 +78,7 @@
     от dynasty8realestate.com
   </div>
 </div>
-
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-3" style="max-width: 540px;  margin-bottom: 2rem; margin-top: 2rem">
   <div class="row g-0">
     <div class="col-md-4">
       <img src="https://static.wikia.nocookie.net/gtawiki/images/f/fa/LegendaryMotorsport-GTAV-Logo.png" class="img-fluid rounded-start" alt="...">
@@ -92,15 +94,29 @@
     </div>
   </div>
 </div>
-<div class="card">
+<div class="card" style="bottom: 200px; left: 600px; width: 35rem">
+   <div class="row g-0">
+      <div class="col-md-1"  style="width: 7rem">
+        <img src="https://sun9-71.userapi.com/impg/i6hC_pJ-MUZAg4JQ-pFeVvda4kzCzkw63I_4vg/bpa9lhK6DSQ.jpg?size=604x604&quality=96&sign=584737778b04a1418f667de1680eb87a&type=album" class="img-fluid w-100" alt="card-horizontal-image">
+      </div>
+      <div class="col-7 col-sm-8">
+        <div class="card-body">
+           <h5 class="card-title">Madd Dogg - Still Madd</h5>
+           <p class="card-text">Слушайте новый альбом Мэдд Догга на всех музыкальных площадках</p>
+        </div>
+      </div>
+   </div>
+</div>
+</div>
+<div class="card" style="bottom: 100px; width: 35rem; left: 110px">
 <div class="card-body">
 <img src="https://avatars.mds.yandex.net/i?id=6d0842f4b62cfb7c8170bada939adaebdef1c7d7-12714829-images-thumbs&n=13">
-        <h5 class="card-title">Новость дня</h5>
+        <h5 class="card-title">Новость часа</h5>
         <p class="card-text">Тревор Филипс убил президента байкерского клуба Джонни Клебица</p>
        <a href="#" class="btn btn-primary">Читать новость</a>
       </div>
       </div>
-<div class="card" style="position: absolute; left: 1000px; top: 150px">
+<div class="card" style="position: absolute; left: 1000px; top: 150px; margin-bottom: 2rem; margin-top: 2rem; margin-right: 6rem">
   <img src="https://i.ytimg.com/vi/ldy_jjcihyQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGHIgUCg-MA8=&rs=AOn4CLDuVwjhuhncECvV4ZeGExC-lt0ZmQ" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Главная новость недели</h5>

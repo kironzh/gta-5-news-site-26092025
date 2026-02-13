@@ -9,6 +9,7 @@ urlpatterns = [
     path('reg/', views.reg, name='reg'),
     path('money', views.money, name='money'),
     path('logout/', views.logout_view, name='logout'),
-    path('news/<int:id>', views.news_template, name='news')
+    path('news/<int:id>', views.news_template, name='news'),
+    path('news/', views.news_list, name='news_list')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

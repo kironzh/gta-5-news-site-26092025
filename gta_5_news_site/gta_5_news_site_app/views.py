@@ -61,4 +61,11 @@ def news_template(request, id):
     }
     return render(request, 'news_template.html', context)
 
+def news_list(request):
+    news = News.objects.all()
+    context = {
+        'news_list' : news
+    }
+    return render(request, 'news_list.html', context)
+
 
