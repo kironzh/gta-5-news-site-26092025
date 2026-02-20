@@ -30,6 +30,9 @@ def auth(request):
 def money(request):
     return render(request, 'money.html')
 
+def media(request):
+    return render(request, 'media.html')
+
 
 def reg(request):
     if request.method == 'POST':
