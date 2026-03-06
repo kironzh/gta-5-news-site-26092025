@@ -6,7 +6,7 @@ from .models import News
 
 def index(request):
     try:
-        context = {'first_name' : request.user.username}
+        context = {'username' : request.user.username}
         return render(request, 'index.html', context)
     except AttributeError as e:
         return render(request, 'index.html')
