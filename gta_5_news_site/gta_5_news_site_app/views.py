@@ -33,6 +33,15 @@ def money(request):
 def media(request):
     return render(request, 'media.html')
 
+def food(request):
+    return render(request, 'food.html')
+
+def travel(request):
+    return render(request, 'travel.html')
+
+def fashion(request):
+    return render(request, 'fashion.html')
+
 
 def reg(request):
     if request.method == 'POST':
