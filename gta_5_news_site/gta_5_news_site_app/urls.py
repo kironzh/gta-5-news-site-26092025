@@ -14,6 +14,7 @@ urlpatterns = [
     path('fashion/', views.fashion, name='fashion'),
     path('logout/', views.logout_view, name='logout'),
     path('news/<int:id>', views.news_template, name='news'),
-    path('news/', views.news_list, name='news_list')
+    path('news/', views.news_list, name='news_list'),
+    path('account/', views.account, name='account'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,8 +1,9 @@
 <!-- Навигационная панель (без изменений) -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
     <div class="container-fluid">
-        <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="Eyefind Info" width="170" height="auto" class="me-3">
-        
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}"><img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="Eyefind Info" width="170" height="auto" class="me-3"></a>
+                </li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarWithDropdown">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'media' %}"><i class="fas fa-tv me-1"></i>СМИ И РАЗВЛЕЧЕНИЯ</a>
+                    <a class="nav-link" href="{% url 'media' %}"><i class="fas fa-tv me-1"></i>СМИ И РАЗВЛЕЧЕНИЯ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'food' %}"><i class="fas fa-utensils me-1"></i>ЕДА И НАПИТКИ</a>

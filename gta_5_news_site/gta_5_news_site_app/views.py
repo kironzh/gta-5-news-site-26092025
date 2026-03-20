@@ -80,4 +80,16 @@ def news_list(request):
     }
     return render(request, 'news_list.html', context)
 
+def account(request):
+    user = User.objects.all()
+    context = {
+        'username' : user.username,
+        'email' : user.email,
+        'first_name' : user.first_name,
+        'password' : user.password,
+    }
+    return render(request, 'account.html', context)
+
+
+
 
