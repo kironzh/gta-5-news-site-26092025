@@ -1,0 +1,53 @@
+<!-- Навигационная панель (без изменений) -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <div class="container-fluid">
+        <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="Eyefind Info" width="170" height="auto" class="me-3">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarWithDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'media' %}"><i class="fas fa-tv me-1"></i>СМИ И РАЗВЛЕЧЕНИЯ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-utensils me-1"></i>ЕДА И НАПИТКИ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'money' %}"><i class="fas fa-dollar-sign me-1"></i>ДЕНЬГИ И УСЛУГИ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-plane me-1"></i>ПУТЕШЕСТВИЕ И ТРАНСПОРТ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-heart me-1"></i>МОДА И ЗДОРОВЬЕ</a>
+                </li>
+                
+                <!-- Блок авторизации -->
+              {% if username %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        <i class="fas fa-user-circle"></i> {{ user.username|default:user.username }}
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+    </ul>
+</li>
+              {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth' %}">
+                        <i class="fas fa-sign-in-alt me-1"></i>ВХОД / РЕГИСТРАЦИЯ
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Поиск..." aria-label="Поиск">
+                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+</nav>
