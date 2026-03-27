@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
     <div class="container-fluid">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}"><img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="Eyefind Info" width="170" height="auto" class="me-3"></a>
+                    <a class="nav-link" href="{% url 'index' %}"><img src="https://static.wikia.nocookie.net/gtawiki/images/b/bc/Eyefind.info-GTA4-logo.PNG/revision/latest?cb=20100527053722" width="200px"alt="Eyefind Info" width="170" height="auto" class="me-3"></a>
                 </li>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWithDropdown" aria-controls="navbarWithDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,13 +27,14 @@
                 </li>
                 
                 <!-- Блок авторизации -->
-              {% if username %}
+              {% if first_name %}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-        <i class="fas fa-user-circle"></i> {{ user.username|default:user.username }}
+        <i class="fas fa-user-circle"></i> {{ first_name }}
     </a>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+        <li><a class="dropdown-item" href="{% url 'account' %}">Профиль</a></li>
     </ul>
 </li>
               {% else %}

@@ -5,23 +5,25 @@ from django.contrib.auth import login, logout, authenticate
 from .models import News
 
 def index(request):
-    try:
-        context = {'first_name' : request.user.username}
-        return render(request, 'index.html', context)
-    except AttributeError as e:
-        return render(request, 'index.html')
+    print(request.user.username)
+    # try:
+    #     context = {'first_name' : request.user.username}
+    #     return render(request, 'index.html', context)
+    # except AttributeError as e:
+    #     return render(request, 'index.html')
+    context = {'first_name' : request.user.username}
+    return render(request, 'index.html', context)
 
 def auth(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-
         user = authenticate(request, username=email, password=password)
-
-        if user is not None:
+        print(user, email, password)
+        if user:
             login(request, user)
-            return JsonResponse({'status' : 'success'})
+            return redirect ('index')
         else:
             return JsonResponse({ 'status' : 'error'})
     else:
@@ -54,7 +56,8 @@ def reg(request):
         user = User.objects.create_user(username, email, password)
         user.save()
         login(request, user)
-        return JsonResponse({'status': 'success'})
+        #return JsonResponse({'status': 'success'})
+        return redirect('index')
     else:
       return render(request, 'reg.html')
     
@@ -81,12 +84,12 @@ def news_list(request):
     return render(request, 'news_list.html', context)
 
 def account(request):
-    user = User.objects.all()
+    print(request.user.id)
     context = {
-        'username' : user.username,
-        'email' : user.email,
-        'first_name' : user.first_name,
-        'password' : user.password,
+        'username' : request.user.username,
+        'email' : request.user.email,
+        'first_name' : request.user.first_name,
+        'password' : request.user.password,
     }
     return render(request, 'account.html', context)
 
