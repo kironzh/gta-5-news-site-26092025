@@ -76,10 +76,23 @@ def news_template(request, id):
     }
     return render(request, 'news_template.html', context)
 
-def news_list(request):
-    news = News.objects.all()
+def news_list(request, news_type):
+    news_type_name = ''
+
+    if news_type == 'all':
+        news = News.objects.all()
+        news_type_name = 'Все новости'
+    else:
+        news = News.objects.filter(news_type = news_type)
+        news_types = News.types
+
+        for nt in news_types:
+            if nt[0] == news_type:
+                news_type_name = nt[1]
+                break
     context = {
-        'news_list' : news
+        'news_list' : news,
+        'news_type' : news_type_name
     }
     return render(request, 'news_list.html', context)
 

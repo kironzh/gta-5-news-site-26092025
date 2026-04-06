@@ -13,9 +13,16 @@ def images_path():
 
 class News(models.Model):
     types = (
-        ('Нов', 'Новость'),
-        ('Стат', 'Статья')
-    )
+        ('hot_news', 'Горячие новости'),
+        ('top_of_the_week', 'Топ недели'),
+        ('recomendations', 'Рекомендуем'),
+        ('news_of_the_day', 'Новость дня'),
+        ('media', 'СМИ и развлечения'),
+        ('food', 'Еда и напитки'),
+        ('money', 'Деньги и услуги'),
+        ('travel', 'Путешествия и транспорт'),
+        ('fashion', 'Мода и здоровье')
+     )
     news_title = models.CharField(max_length = 100) #заголовок
     news_text = models.TextField() #текст новости
     image = models.ImageField() #изображение
