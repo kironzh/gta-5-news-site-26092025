@@ -21,9 +21,9 @@ class News(models.Model):
         ('food', 'Еда и напитки'),
         ('money', 'Деньги и услуги'),
         ('travel', 'Путешествия и транспорт'),
-        ('fashion', 'Мода и здоровье')
+        ('fashion', 'Мода и здоровье'),
      )
-    news_title = models.CharField(max_length = 100) #заголовок
+    news_title = models.CharField(max_length = 200) #заголовок
     news_text = models.TextField() #текст новости
     image = models.ImageField() #изображение
     pub_date = models.DateField(max_length = 20) #дата публикации

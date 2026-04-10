@@ -44,6 +44,9 @@ def travel(request):
 def fashion(request):
     return render(request, 'fashion.html')
 
+def sponsors(request):
+    return render(request, 'sponsors.html')
+
 
 def reg(request):
     if request.method == 'POST':
