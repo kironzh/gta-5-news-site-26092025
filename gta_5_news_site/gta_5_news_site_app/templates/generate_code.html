@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Подтверждение почты – Eyefind{% endblock %}
+
+{% block css %}
+    <!-- Связывание с CSS файлом -->
+    <link rel="stylesheet" href={% static 'css/account.css' %}>
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <form method="post" action="check">
+  <input name="code" type="text" placeholder="Введите код подтверждения">
+  <button>Отправить</button>
+</form>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src={% static 'js/account.js' %}></script>    
+{% endblock %}

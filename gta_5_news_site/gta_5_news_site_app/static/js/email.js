@@ -3,8 +3,9 @@ $('#submit-button').click(
         let email = $('#email').val();
         let submitButton = $('#submit-button');
         const CSRF = $('[name=csrfmiddlewaretoken]').val();
+        const emailPattern = /^[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/; // Это регулярное выражение
 
-        if(!email.includes('@') || !email.includes('.')) {
+        if(!emailPattern.test(email)) {
             submitButton.val('Неправильно введён адрес почты');
             submitButton.css('background-color', 'red'); 
             return;          
@@ -13,19 +14,23 @@ $('#submit-button').click(
         $.ajax({
             url: '/email/',
             method: 'POST',
-            dataType: 'JSON',
+            dataType: 'json',
             data: {
                 'email' : email,
                 'csrfmiddlewaretoken' : CSRF
             },
-            success: function(data) {
-                submitButton.val('Отправлено');
-                submitButton.prop('disabled', true);
-                submitButton.css('background-color', 'green');
+            success: function(xhr) {
+                if(xhr.responseJSON) {
+                    submitButton.val(xhr.responseJSON.message);
+                    submitButton.css('background-color', 'green');
+                    submitButton.prop('disabled', true);
+                }
             },
-            error: function(data) {
-                submitButton.val('Что-то не так. Попробуйте ещё раз');
-                submitButton.css('background-color', 'red');
+            error: function(xhr) {
+                if(xhr.responseJSON) {
+                    submitButton.val(xhr.responseJSON.message);
+                    submitButton.css('background-color', 'red');
+                }
             }
         })
     }

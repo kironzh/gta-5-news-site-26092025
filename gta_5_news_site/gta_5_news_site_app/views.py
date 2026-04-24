@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import login, logout, authenticate
 from .models import News
+from django.core.mail import send_mail
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+import random
 
 def index(request):
     print(request.user.username)
@@ -108,6 +112,33 @@ def account(request):
         'password' : request.user.password,
     }
     return render(request, 'account.html', context)
+
+def email(request):
+    if request.method == 'POST' and request.POST.get('email'):
+        
+        try:
+            email = request.POST.get('email')
+            validate_email(email)
+            print('Получилось взять имейл: ', email)
+        except ValidationError:
+            return JsonResponse({'status': 'error', 'message' : 'Неправильно ввёден адрес почты'}, status=400)
+
+        send_mail(
+            "Проверка из Django",
+            "Привет из Django!",
+            'kironzh@yandex.ru',
+            [str(email)],
+            fail_silently=False,
+        )
+
+
+        return JsonResponse({'status': 'success', 'message' : 'Отправлено'})
+    return JsonResponse({'status' : 'error', 'message' : 'Метод не разрешён. Только POST.'}, status=405)
+
+def generate_code(request):
+    print(random.randint(100000,999999))
+    return render(request, 'generate_code.html')
+
 
 
 
