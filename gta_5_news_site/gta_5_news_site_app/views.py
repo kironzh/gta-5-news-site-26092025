@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.contrib.auth import login, logout, authenticate
-from .models import News
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
+from .models import News, EmailCode
 from django.core.mail import send_mail
 from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 import random
+import threading
 
 def index(request):
     print(request.user.username)
@@ -51,6 +52,14 @@ def fashion(request):
 def sponsors(request):
     return render(request, 'sponsors.html')
 
+def send_email_code_async(email, code):
+    send_mail(
+        'Продукты 24/7: код подтверждения',
+        f'Ваш код подтверждения: {code}',
+        'edsuyargulov@yandex.ru',
+        [email],
+        fail_silently=False,
+    )
 
 def reg(request):
     if request.method == 'POST':
@@ -60,7 +69,28 @@ def reg(request):
         password = request.POST.get('password')
         print(first_name)
         username = email
-        user = User.objects.create_user(username, email, password)
+        user = User.objects.create_user(
+            username = email,
+            email = email,
+            password = password,
+            is_active = False
+        )
+        code = str(random.randint(100000, 999999))
+
+        EmailCode.objests.create(
+            user = user,
+            code = code
+        )
+        threading.Thread(
+            target=send_email_code_async,
+            args=(email, code)
+        ).start()        
+
+        request.session['pending_user_id'] = user.id
+        return JsonResponse({
+            'status': 'success',
+            'redirect': '/confirm/'
+        })
         user.save()
         login(request, user)
         #return JsonResponse({'status': 'success'})
@@ -135,9 +165,29 @@ def email(request):
         return JsonResponse({'status': 'success', 'message' : 'Отправлено'})
     return JsonResponse({'status' : 'error', 'message' : 'Метод не разрешён. Только POST.'}, status=405)
 
-def generate_code(request):
-    print(random.randint(100000,999999))
-    return render(request, 'generate_code.html')
+def confirm(request):
+    if request.method == 'POST':
+        code = request.POST.get('email-code')
+        user_id = request.session.get('pending_user_id')
+
+        if user_id:
+            try:
+                user = User.objects.get(id = user_id)
+                email_code = EmailCode.objects.get(user = user, code = code)
+
+                if email_code.code == code:
+                    if not email_code.is_expired():
+                        user.is_active = True
+                        user.save()
+                        email_code.delete()
+                        login(request, user)
+                        return JsonResponse({'status' : 'success', 'redirect' : '/account/'})
+                    else:
+                        return JsonResponse({'status': 'error', 'message': 'Срок действия кода истек'}, status=400)
+            except ObjectDoesNotExist:
+                return JsonResponse({'status': 'error', 'message': 'Неверный код'}, status=400)
+
+    return render(request, 'confirm.html')
 
 
 

@@ -18,6 +18,6 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('sponsors/', views.sponsors, name='sponsors'),
     path('email/', views.email, name='email'),
-    path('generate_code/', views.generate_code, name='generate_code')
+    path('confirm/', views.confirm, name='confirm'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
