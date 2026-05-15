@@ -12,10 +12,12 @@ def news_text_path():
 def images_path():
     return os.path.join(settings.LOCAL_FILE_DIR, "images")
 
+class Vasya(models.Model):
+    test = 'hello'
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthdate = models.DateField(null=True, blank=True)
-
 
 class News(models.Model):
     types = (
@@ -43,9 +45,32 @@ class EmailCode(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
     created_at = models.DateTimeField(auto_now_add=True)
-class ObjectDoesNotExist(models.Model):
-    types = (
-     )
+
+# class ObjectDoesNotExist(models.Model):
+#     types = (
+#      )
     
-    def is_expired(self):
-        return timezone.now() > self.created_at + timedelta(minutes=30)
+#     def is_expired(self):
+#         return timezone.now() > self.created_at + timedelta(minutes=30)
+
+class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        ordering = ['-date']
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    text = models.TextField()
+    created = models.DateTimeField(default=timezone.now, null=True)
+    moderation = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.text

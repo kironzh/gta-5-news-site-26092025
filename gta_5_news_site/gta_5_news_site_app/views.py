@@ -77,7 +77,7 @@ def reg(request):
         )
         code = str(random.randint(100000, 999999))
 
-        EmailCode.objests.create(
+        EmailCode.objects.create(
             user = user,
             code = code
         )
