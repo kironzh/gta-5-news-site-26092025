@@ -16,21 +16,40 @@ def index(request):
     #     return render(request, 'index.html', context)
     # except AttributeError as e:
     #     return render(request, 'index.html')
-    context = {'first_name' : request.user.username}
+    context = {'username' : request.user.username}
     return render(request, 'index.html', context)
 
 def auth(request):
+    # if request.method == 'POST':
+    #     username = request.POST.get('username')
+    #     email = request.POST.get('email')
+    #     password = request.POST.get('password')
+    #     user = authenticate(request, username=email, password=password)
+    #     print(user, email, password)
+    #     if user:
+    #         login(request, user)
+    #         return redirect ('index')
+    #     else:
+    #         return JsonResponse({ 'status' : 'error'})
+    # else:
+    #     return render(request, 'auth.html')
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
-        print(user, email, password)
-        if user:
+
+        # Авторизация: здесь ищется зарегистрированный пользователь
+        user = authenticate(request, username=username, password=password)
+        if user is not None: # Если пользователь есть
+            print('Нашелся пользователь ', user.username)
             login(request, user)
-            return redirect ('index')
-        else:
-            return JsonResponse({ 'status' : 'error'})
+            return redirect('index')
+            #return JsonResponse({'status' : 'success', 'message' : 'Пользователь авторизован'})
+        #else:
+            #return JsonResponse({'status' : 'error', 'message' : 'Неправильный адрес электронной почты или пароль'}, status=400)
+
+    if request.user.is_authenticated:
+        return redirect('index')
     else:
         return render(request, 'auth.html')
 
@@ -104,12 +123,14 @@ def logout_view(request):
 
 def news_template(request, id):
     news = News.objects.get(id = id) 
+
     context = { 
         'news_title' : news.news_title,
         'image' : news.image,
         'news_text' : news.news_text,
         'pub_date' : news.pub_date,
-        'news_source' : news.news_source
+        'news_source' : news.news_source,
+        'username' : request.user.username
     }
     return render(request, 'news_template.html', context)
 
@@ -129,7 +150,8 @@ def news_list(request, news_type):
                 break
     context = {
         'news_list' : news,
-        'news_type' : news_type_name
+        'news_type' : news_type_name,
+        'username' : request.user.username
     }
     return render(request, 'news_list.html', context)
 

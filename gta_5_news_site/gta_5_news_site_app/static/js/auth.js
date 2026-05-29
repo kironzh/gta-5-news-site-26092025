@@ -3,6 +3,7 @@ $('#auth-button').click(
         let email = $('#email').val();
         let password = $('#password').val();
         let csrf = $('[name=csrfmiddlewaretoken]').val();
+        let authButton = $('#auth-button');
         console.log(email)
         if(!email) {
             alert('Введите адрес почты');
@@ -21,11 +22,18 @@ $('#auth-button').click(
                 'password' : password,
                 'csrfmiddlewaretoken': csrf
             },
-            success: function(data) {
+            success: function() {
                 window.location.href = '/';
             },
-            error: function(data) {
-                alert('Вы не зарегистрированы')
+            error: function(xhr) {
+                if(xhr.responseJSON) {
+                    authButton.attr('data-bs-content', xhr.responseJSON.message);
+
+                    let popover = bootstrap.Popover.getInstance(authButton[0]);
+                    if(popover) popover.dispose();
+                    popover = new bootstrap.Popover(authButton[0]);
+                    popover.show();
+                }
             }
         });
     }

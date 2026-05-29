@@ -27,14 +27,14 @@
                 </li>
                 
                 <!-- Блок авторизации -->
-              {% if first_name %}
+              {% if username %}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-        <i class="fas fa-user-circle"></i> {{ first_name }}
+        <i class="fas fa-user-circle"></i> {{ username }}
     </a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
         <li><a class="dropdown-item" href="{% url 'account' %}">Профиль</a></li>
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
     </ul>
 </li>
               {% else %}
